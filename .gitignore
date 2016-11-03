@@ -54,3 +54,4 @@ atlassian-ide-plugin.xml
 
 # NetBeans artifacts
 /nbproject
+/dist/
