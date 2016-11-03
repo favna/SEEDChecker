@@ -41,7 +41,6 @@ public class FileDownloader extends TimerTask {
     private final String titleID;
     private final String country;
     private final ResultLogger resultWindow;
-    private String[] resultLog;
 
     public FileDownloader() {
         this.resultWindow = new ResultLogger();
@@ -106,25 +105,15 @@ public class FileDownloader extends TimerTask {
 
             try (InputStream in = website.openStream()) {
                 Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
-                resultLog = new String[1];
-                resultLog[0] = "Successfully downloaded SEED to " + target.toString();
-                resultWindow.txaLog.append(String.join("", resultLog));
+                resultWindow.txaLog.append(String.join("", "Successfully downloaded SEED to " + target.toString()));
                 resultWindow.txaLog.append("\n");
             }
 
         } catch (MalformedURLException ex) {
             System.out.println(ex);
         } catch (java.io.FileNotFoundException noseed) {
-            resultLog = new String[100];
-            for (int arrayNumerator = 0; arrayNumerator < resultLog.length; arrayNumerator++) {
-                if (arrayNumerator == 99) {
-                    resultLog = new String[100];
-                } else if (resultLog[arrayNumerator] == null) {
-                    resultLog[arrayNumerator] = "No seed available for " + titleID + " in " + country;
-                    resultWindow.txaLog.append(String.join("", resultLog));
-                    resultWindow.txaLog.append("\n");
-                }
-            }
+            resultWindow.txaLog.append(String.join("", "No seed available for " + titleID + " in " + country));
+            resultWindow.txaLog.append("\n");
         } catch (IOException e) {
             System.out.println(e);
         }
