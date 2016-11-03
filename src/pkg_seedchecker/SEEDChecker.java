@@ -16,7 +16,9 @@
  */
 package pkg_seedchecker;
 
+import java.net.URL;
 import java.util.Timer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +26,7 @@ import javax.swing.JOptionPane;
  * @author Favna
  */
 public class SEEDChecker extends javax.swing.JFrame {
-    
+
     Timer timer;
 
     /**
@@ -32,6 +34,13 @@ public class SEEDChecker extends javax.swing.JFrame {
      */
     public SEEDChecker() {
         initComponents();
+        setIcon();
+    }
+
+    private void setIcon() {
+        URL iconURL = getClass().getResource("res/icon.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
     }
 
     private void iniateTimer() {
@@ -47,7 +56,7 @@ public class SEEDChecker extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnl_Main = new javax.swing.JPanel();
         btn_Check = new javax.swing.JButton();
         txt_titleID = new javax.swing.JTextField();
         txt_Country = new javax.swing.JTextField();
@@ -55,11 +64,17 @@ public class SEEDChecker extends javax.swing.JFrame {
         lbl_titleID = new javax.swing.JLabel();
         cbx_Interval = new javax.swing.JComboBox<>();
         lbl_Interval = new javax.swing.JLabel();
-        scp_Log = new javax.swing.JScrollPane();
-        lst_Log = new javax.swing.JList<>();
         btn_Cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SEEDChecker");
+        setName("SEEDChecker"); // NOI18N
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btn_Check.setText("Start SEED Checking");
         btn_Check.addActionListener(new java.awt.event.ActionListener() {
@@ -80,24 +95,13 @@ public class SEEDChecker extends javax.swing.JFrame {
             }
         });
 
-        lbl_Country.setText("Country code");
+        lbl_Country.setText("Country code (ISO Alpha 2 code)");
 
         lbl_titleID.setText("Title ID");
 
         cbx_Interval.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 Seconds", "5 Seconds", "10 Seconds", "30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "5 Minutes", "8 Minutes", "10 Minutes", "15 Minutes", "30 Minutes", "60 Minutes" }));
-        cbx_Interval.setSelectedIndex(4);
 
         lbl_Interval.setText("Set your repeat interval");
-
-        lst_Log.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "No seed available for 0004000000164800 in AU" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        lst_Log.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lst_Log.setFocusable(false);
-        lst_Log.setRequestFocusEnabled(false);
-        scp_Log.setViewportView(lst_Log);
 
         btn_Cancel.setText("Cancel SEED Checking");
         btn_Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -106,54 +110,49 @@ public class SEEDChecker extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_MainLayout = new javax.swing.GroupLayout(pnl_Main);
+        pnl_Main.setLayout(pnl_MainLayout);
+        pnl_MainLayout.setHorizontalGroup(
+            pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_MainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_MainLayout.createSequentialGroup()
+                        .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_titleID)
                             .addComponent(cbx_Interval, 0, 130, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_MainLayout.createSequentialGroup()
                                 .addComponent(lbl_titleID, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64)
                                 .addComponent(txt_Country, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbl_Country))
                             .addComponent(lbl_Interval)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_MainLayout.createSequentialGroup()
+                        .addComponent(btn_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(scp_Log, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_titleID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_titleID)
-                            .addComponent(txt_Country, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_Country))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbx_Interval, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_Interval))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(scp_Log))
+        pnl_MainLayout.setVerticalGroup(
+            pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_MainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_titleID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_titleID)
+                    .addComponent(txt_Country, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Country))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_Interval, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Interval))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGroup(pnl_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -161,16 +160,17 @@ public class SEEDChecker extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnl_Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -207,16 +207,18 @@ public class SEEDChecker extends javax.swing.JFrame {
         System.out.println("Timer canceled!");
     }//GEN-LAST:event_btn_CancelActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.setLocationRelativeTo(null);  // Center window on launch
+    }//GEN-LAST:event_formWindowOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Cancel;
     private javax.swing.JButton btn_Check;
     private javax.swing.JComboBox<String> cbx_Interval;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_Country;
     private javax.swing.JLabel lbl_Interval;
     private javax.swing.JLabel lbl_titleID;
-    private javax.swing.JList<String> lst_Log;
-    private javax.swing.JScrollPane scp_Log;
+    private javax.swing.JPanel pnl_Main;
     private javax.swing.JTextField txt_Country;
     private javax.swing.JTextField txt_titleID;
     // End of variables declaration//GEN-END:variables

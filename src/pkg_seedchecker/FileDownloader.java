@@ -27,8 +27,6 @@ import java.nio.file.StandardCopyOption;
 import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -42,8 +40,17 @@ public class FileDownloader extends TimerTask {
 
     private final String titleID;
     private final String country;
+    private final ResultLogger resultWindow;
+    private String[] resultLog;
+
+    public FileDownloader() {
+        this.resultWindow = new ResultLogger();
+        this.titleID = "";
+        this.country = "";
+    }
 
     public FileDownloader(String titleID, String country) {
+        this.resultWindow = new ResultLogger();
         this.titleID = titleID;
         this.country = country;
     }
@@ -51,10 +58,12 @@ public class FileDownloader extends TimerTask {
     @Override
     public void run() {
         HttpsSeedChecker();
-        System.out.println("file downloaded!");
+        resultWindow.txaLog.validate();
     }
 
     public void HttpsSeedChecker() {
+
+        resultWindow.setVisible(true);
 
         // Setting File URL
         String serverURL = "https://kagiya-ctr.cdn.nintendo.net/title/0x";
@@ -97,14 +106,27 @@ public class FileDownloader extends TimerTask {
 
             try (InputStream in = website.openStream()) {
                 Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
+                resultLog = new String[1];
+                resultLog[0] = "Successfully downloaded SEED to " + target.toString();
+                resultWindow.txaLog.append(String.join("", resultLog));
+                resultWindow.txaLog.append("\n");
             }
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(SeedCheckerLauncher.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         } catch (java.io.FileNotFoundException noseed) {
-            System.out.println("No seed available for " + titleID + " in " + country);
+            resultLog = new String[100];
+            for (int arrayNumerator = 0; arrayNumerator < resultLog.length; arrayNumerator++) {
+                if (arrayNumerator == 99) {
+                    resultLog = new String[100];
+                } else if (resultLog[arrayNumerator] == null) {
+                    resultLog[arrayNumerator] = "No seed available for " + titleID + " in " + country;
+                    resultWindow.txaLog.append(String.join("", resultLog));
+                    resultWindow.txaLog.append("\n");
+                }
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }
