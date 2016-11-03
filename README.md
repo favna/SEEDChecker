@@ -11,3 +11,10 @@ First of all make sure you have Java installed. [You can download it here](https
 - Finally select the interval at which you want the tool to check the server and hit the button. A new window will pop up which will produce a log of events. Assuming you are checking for a SEED that is not available it will mostly tell you just that, once it is available however it will download it and tell you the download location.
 - The download location will by default always be `your user directory/downloads/TitleID.dat`.
  - For example `C:\Users\UserName\downloads\TitleID.dat`
+
+##Building
+Ready made builds of the latest version can always be found under Releases. [Click here to go there](https://github.com/Favna/SEEDChecker/releases/latest)
+
+If you desire to compile the source yourself you need [Java SE Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+Then in a terminal/command prompt navigate to `SEEDChecker\src\pkg_seedchecker` and run `java SeedCheckerLauncher`
