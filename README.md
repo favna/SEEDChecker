@@ -15,6 +15,4 @@ First of all make sure you have Java installed. [You can download it here](https
 ##Building
 Ready made builds of the latest version can always be found under Releases. [Click here to go there](https://github.com/Favna/SEEDChecker/releases/latest)
 
-If you desire to compile the source yourself you need [Java SE Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-
-Then in a terminal/command prompt navigate to `SEEDChecker\src\pkg_seedchecker` and run `java SeedCheckerLauncher`
+If you desire to compile the source yourself you need [Java SE Development Kit] (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) as well as a Java compatible IDE such as [netbeans](https://netbeans.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/). Open the project in the IDE of your choose and build it from there by whichever method the IDE uses.
