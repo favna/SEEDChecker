@@ -177,11 +177,11 @@ public class SEEDChecker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_titleIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_titleIDFocusGained
-
+        txt_titleID.selectAll();
     }//GEN-LAST:event_txt_titleIDFocusGained
 
     private void txt_CountryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_CountryFocusGained
-
+        txt_Country.selectAll();
     }//GEN-LAST:event_txt_CountryFocusGained
 
     private void btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CheckActionPerformed
